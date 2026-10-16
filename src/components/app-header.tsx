@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CircleHelp, Home, LayoutDashboard, Plus, ShieldCheck } from "lucide-react";
+import { CircleHelp, Home, LayoutDashboard, Plus } from "lucide-react";
 
 import { UserMenu } from "@/components/auth/user-menu";
 import { CreateChecklistDialog } from "@/components/dashboard/create-checklist-dialog";
@@ -12,6 +12,24 @@ import { useAuth } from "@/lib/auth/auth-provider";
 import { APP_NAME, APP_TAGLINE, LABEL_TASK_MONITORING } from "@/lib/checklist/config";
 import { ROUTE_FAQ, ROUTE_HOME, ROUTE_TASKS } from "@/lib/routes";
 import { cn } from "@/lib/utils";
+
+/**
+ * Logo BRI dari /public. "light" = berkas untuk tema terang, "dark" = untuk
+ * tema gelap (ganti ekstensi di sini bila berkas Anda .png/.webp).
+ */
+const LOGO_LIGHT_SRC = "/bri-logo-light.svg";
+const LOGO_DARK_SRC = "/bri-logo-dark.svg";
+
+function BriLogo() {
+  return (
+    <span className="flex h-8 shrink-0 items-center" aria-hidden="true">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={LOGO_LIGHT_SRC} alt="" className="h-8 w-auto dark:hidden" />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={LOGO_DARK_SRC} alt="" className="hidden h-8 w-auto dark:block" />
+    </span>
+  );
+}
 
 /** Navigasi minimal: Home, Task Monitoring, Create Checklist, FAQ, tema. */
 export function AppHeader() {
@@ -30,12 +48,7 @@ export function AppHeader() {
           href={ROUTE_HOME}
           className="flex min-w-0 items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
-          <span
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground"
-            aria-hidden="true"
-          >
-            <ShieldCheck className="h-5 w-5" />
-          </span>
+          <BriLogo />
           <span className="min-w-0 leading-tight">
             <span className="block truncate text-sm font-semibold tracking-wide">{APP_NAME}</span>
             <span className="hidden text-xs text-muted-foreground sm:block">{APP_TAGLINE}</span>
