@@ -1,8 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { Eye, EyeOff, Loader2, ShieldCheck } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 
+import { BriLogo } from "@/components/bri-logo";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -41,12 +42,7 @@ export function LoginCard() {
     <div className="mx-auto flex min-h-[calc(100vh-3.5rem)] w-full max-w-md items-center px-4 py-10">
       <Card className="w-full">
         <CardHeader className="items-center space-y-3 text-center">
-          <span
-            className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground"
-            aria-hidden="true"
-          >
-            <ShieldCheck className="h-7 w-7" />
-          </span>
+          <BriLogo heightClass="h-12" />
           <div className="space-y-1">
             <CardTitle className="text-xl">Masuk ke BRICHECK</CardTitle>
             <CardDescription>{APP_FULL_NAME}</CardDescription>

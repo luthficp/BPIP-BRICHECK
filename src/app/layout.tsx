@@ -15,6 +15,12 @@ export const metadata: Metadata = {
   title: APP_FULL_NAME,
   description:
     "Alat bantu verifikasi dan validasi Bank Garansi: membandingkan Underlying Document, Memorandum Analisa Bank Garansi, dan Putusan Bank Garansi secara otomatis. Bukan sistem approval.",
+  // Favicon dari /public/bri-icon.svg (ubah ekstensi bila berkas Anda .png/.ico).
+  icons: {
+    icon: "/bri-icon.svg",
+    shortcut: "/bri-icon.svg",
+    apple: "/bri-icon.svg",
+  },
 };
 
 export const viewport: Viewport = {
