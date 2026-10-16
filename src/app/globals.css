@@ -1,0 +1,232 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Dark mode lewat class `.dark` (next-themes, attribute="class"). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------ */
+/* Palet: putih bersih + biru corporate banking.                       */
+/* Hijau = SESUAI, merah = TIDAK SESUAI, amber = perlu perhatian.      */
+/* ------------------------------------------------------------------ */
+:root {
+  --background: 210 33% 98%;
+  --foreground: 215 28% 14%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 215 28% 14%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 215 28% 14%;
+
+  --primary: 209 100% 31%;
+  --primary-foreground: 0 0% 100%;
+  --primary-soft: 209 85% 95%;
+
+  --secondary: 209 80% 94%;
+  --secondary-foreground: 209 100% 24%;
+
+  --muted: 214 32% 95%;
+  --muted-foreground: 215 16% 40%;
+
+  --accent: 209 80% 96%;
+  --accent-foreground: 209 100% 24%;
+
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 214 24% 88%;
+  --input: 214 24% 80%;
+  --ring: 209 100% 40%;
+
+  --success: 142 72% 24%;
+  --success-soft: 142 70% 94%;
+  --success-border: 142 50% 72%;
+
+  --danger: 0 72% 42%;
+  --danger-soft: 0 86% 96%;
+  --danger-border: 0 70% 82%;
+
+  --warning: 28 90% 28%;
+  --warning-soft: 40 100% 94%;
+  --warning-border: 38 85% 66%;
+
+  /* Header tabel: biru BRI + teks putih (juga pada dark mode agar kontras terjaga). */
+  --table-header: 208.46 100% 30.59%; /* = #00529C, sama dengan Print/PDF/Word */
+  --table-header-foreground: 0 0% 100%;
+
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 220 28% 7%;
+  --foreground: 210 30% 94%;
+
+  --card: 220 26% 10%;
+  --card-foreground: 210 30% 94%;
+  --popover: 220 26% 11%;
+  --popover-foreground: 210 30% 94%;
+
+  --primary: 210 92% 60%;
+  --primary-foreground: 220 40% 8%;
+  --primary-soft: 212 45% 16%;
+
+  --secondary: 213 38% 18%;
+  --secondary-foreground: 210 80% 85%;
+
+  --muted: 220 20% 14%;
+  --muted-foreground: 215 18% 68%;
+
+  --accent: 215 30% 17%;
+  --accent-foreground: 210 80% 88%;
+
+  --destructive-foreground: 220 40% 8%;
+
+  --border: 220 18% 20%;
+  --input: 220 18% 27%;
+  --ring: 210 92% 60%;
+
+  --success: 142 62% 62%;
+  --success-soft: 142 38% 13%;
+  --success-border: 142 38% 28%;
+
+  --danger: 0 90% 72%;
+  --danger-soft: 0 42% 14%;
+  --danger-border: 0 48% 32%;
+
+  --warning: 38 95% 66%;
+  --warning-soft: 35 48% 13%;
+  --warning-border: 35 55% 30%;
+
+  --table-header: 210 85% 28%;
+  --table-header-foreground: 0 0% 100%;
+}
+
+/* ------------------------------------------------------------------ */
+/* Tailwind v4: token warna/radius didaftarkan lewat @theme            */
+/* (menggantikan tailwind.config.ts pada Tailwind v3).                 */
+/* `inline` agar nilai var(--...) ikut berubah saat mode gelap.        */
+/* ------------------------------------------------------------------ */
+@theme inline {
+  --font-sans: "Segoe UI", Inter, system-ui, -apple-system, Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-soft: hsl(var(--primary-soft));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--danger));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-success: hsl(var(--success));
+  --color-success-soft: hsl(var(--success-soft));
+  --color-success-border: hsl(var(--success-border));
+
+  --color-danger: hsl(var(--danger));
+  --color-danger-soft: hsl(var(--danger-soft));
+  --color-danger-border: hsl(var(--danger-border));
+
+  --color-warning: hsl(var(--warning));
+  --color-warning-soft: hsl(var(--warning-soft));
+  --color-warning-border: hsl(var(--warning-border));
+
+  --color-table-header: hsl(var(--table-header));
+  --color-table-header-foreground: hsl(var(--table-header-foreground));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+@layer base {
+  /* Tailwind v4 membuat warna border default = currentColor; kembalikan ke token. */
+  *,
+  ::before,
+  ::after {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Hormati preferensi pengurangan animasi. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Print: dokumen resmi, bukan screenshot website                      */
+/* ------------------------------------------------------------------ */
+@page {
+  size: A4 portrait;
+  margin: 12mm;
+}
+
+@media print {
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  [data-sonner-toaster] {
+    display: none !important;
+  }
+
+  .print-sheet {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .print-sheet table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  .print-sheet thead {
+    display: table-header-group;
+  }
+
+  .print-sheet tr,
+  .print-avoid-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
