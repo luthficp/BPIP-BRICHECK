@@ -3,7 +3,6 @@
 import * as React from "react";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 
-import { BriLogo } from "@/components/bri-logo";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -42,7 +41,9 @@ export function LoginCard() {
     <div className="mx-auto flex min-h-[calc(100vh-3.5rem)] w-full max-w-md items-center px-4 py-10">
       <Card className="w-full">
         <CardHeader className="items-center space-y-3 text-center">
-          <BriLogo heightClass="h-12" />
+          {/* Ikon BRI dari /public/bri-icon.svg (ubah ekstensi bila berkas .png). */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/bri-icon.svg" alt="BRI" className="h-14 w-14 object-contain" />
           <div className="space-y-1">
             <CardTitle className="text-xl">Masuk ke BRICHECK</CardTitle>
             <CardDescription>{APP_FULL_NAME}</CardDescription>

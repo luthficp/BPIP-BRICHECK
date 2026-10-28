@@ -4,6 +4,8 @@ import * as React from "react";
 import { Plus, Trash2, TriangleAlert } from "lucide-react";
 
 import { KontraRows, type KontraValueChange } from "@/components/checklist/kontra-garansi";
+import { PdfUploadPanel } from "@/components/checklist/pdf-upload-panel";
+import type { PdfExtraction } from "@/components/checklist/use-pdf-extraction";
 import { ResultCell } from "@/components/checklist/result-cell";
 import { ValidationNotes } from "@/components/checklist/validation-notes";
 import { ValidationSummaryBanner } from "@/components/checklist/validation-summary";
@@ -99,6 +101,8 @@ type CriticalFieldValidationProps = {
   onKontraConfig: (fieldId: number, counts: KontraCounts) => void;
   /** Kontra Garansi: satu field detail pada satu sumber. */
   onKontraValue: KontraValueChange;
+  /** Upload PDF opsional (MABG/PTBG); statusnya dipegang workspace agar bertahan antar step. */
+  pdf: PdfExtraction;
 };
 
 export function CriticalFieldValidation({
@@ -115,6 +119,7 @@ export function CriticalFieldValidation({
   onSharedChange,
   onKontraConfig,
   onKontraValue,
+  pdf,
 }: CriticalFieldValidationProps) {
   // Tampilan validasi sedikit ditunda supaya tidak berkedip merah-hijau saat mengetik.
   // Nilai input tetap memakai `fields` (real-time); gating & penyimpanan tidak terpengaruh.
@@ -152,6 +157,8 @@ export function CriticalFieldValidation({
       </CardHeader>
 
       <CardContent className="space-y-4">
+        {!readOnly && <PdfUploadPanel pdf={pdf} />}
+
         <ValidationSummaryBanner
           summary={summary}
           emptyCells={emptyCells}

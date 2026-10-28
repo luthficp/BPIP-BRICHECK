@@ -13,6 +13,7 @@ import { DocumentVerification } from "@/components/checklist/document-verificati
 import { ReopenPanel } from "@/components/checklist/reopen";
 import { Stepper } from "@/components/checklist/stepper";
 import { StepOutput } from "@/components/checklist/step-output";
+import { usePdfExtraction } from "@/components/checklist/use-pdf-extraction";
 import { PrintLayout } from "@/components/export/print-layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -94,6 +95,9 @@ function describeIncomplete(step: StepId, c: BankGuaranteeChecklist): string {
 
 export function ChecklistWorkspace({ id }: { id: string }) {
   const { checklist, loadState, saveState, update } = useChecklistEditor(id);
+  // Upload PDF opsional (MABG/PTBG) di Step 2. Dipasang di sini agar status berkas dan ringkasan
+  // bertahan saat pindah step; perubahan tabel disimpan seperti isian manual.
+  const pdf = usePdfExtraction(checklist, (apply) => update(apply, { immediate: true }));
   const [stepState, setStep] = React.useState<StepId>(1);
   const [initialised, setInitialised] = React.useState(false);
   const [errors, setErrors] = React.useState<ErrorFlags>({});
@@ -322,6 +326,7 @@ export function ChecklistWorkspace({ id }: { id: string }) {
               onSharedChange={onSharedChange}
               onKontraConfig={onKontraConfig}
               onKontraValue={onKontraValue}
+              pdf={pdf}
             />
           )}
           {step === 3 && (
